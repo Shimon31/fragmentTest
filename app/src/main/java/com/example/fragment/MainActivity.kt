@@ -1,6 +1,7 @@
 package com.example.fragment
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolBar.root)
 
-        val drawerLayout = binding.drawerLayout
+        val drawerLayout = binding.main
         val navView = binding.navigationView
 
         navController = findNavController(R.id.fragmentContainerView)
@@ -39,18 +40,22 @@ class MainActivity : AppCompatActivity() {
                 R.id.userFragment
 
             ), drawerLayout
-
-
         )
 
         setupActionBarWithNavController(navController, drawerLayout)
         navView.setupWithNavController(navController)
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
-
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+
+        menuInflater.inflate(R.menu.menu,menu)
+
+        return true
     }
 
 }
